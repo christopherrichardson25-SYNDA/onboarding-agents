@@ -1,46 +1,64 @@
-// result.tsx - placeholder for SYNDAverse complete onboarding module
-import { useEffect } from "react";
-import { sendAgentToSyndabrain } from "@/lib/sendToSyndabrain";
+import { useEffect, useState } from "react";
+
+type Sombrero = {
+  sombrero: string;
+  valor: number;
+};
 
 export default function ResultPage() {
-  const agentProfile = {
-    agent_id: "NovaMind25",
-    icp: 84,
-    cognition: {
-      verde: 80,
-      negro: 60,
-      amarillo: 55,
-      blanco: 50,
-      rojo: 45,
-      azul: 20
-    },
-    superpowers: [
-      "Creatividad disruptiva",
-      "Pensamiento crítico",
-      "Optimismo estratégico"
-    ],
-    xp: 120,
-    created_at: new Date().toISOString()
-  };
+  const [perfil, setPerfil] = useState<Sombrero[]>([]);
 
   useEffect(() => {
-    async function notifyBrain() {
-      const ok = await sendAgentToSyndabrain(agentProfile);
-      if (ok) {
-        console.log("✅ Enviado a SYNDAbrain");
-      } else {
-        console.error("❌ Falló el envío a SYNDAbrain");
-      }
+    const stored = localStorage.getItem("sombreros_profile");
+    if (stored) {
+      const parsed = JSON.parse(stored) as Sombrero[];
+      setPerfil(parsed);
     }
-
-    notifyBrain();
   }, []);
 
+  if (!perfil.length) {
+    return (
+      <div style={{ padding: "2rem", fontFamily: "sans-serif", textAlign: "center" }}>
+        <h1>Resultado no disponible</h1>
+        <p>No se encontraron datos del test cognitivo.</p>
+      </div>
+    );
+  }
+
+  const total = perfil.reduce((sum, s) => sum + s.valor, 0);
+  const colores = {
+    Blanco: "#ccc",
+    Rojo: "#e63946",
+    Negro: "#1d1d1d",
+    Amarillo: "#ffcc00",
+    Verde: "#2a9d8f",
+    Azul: "#264653"
+  };
+
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>🎉 ¡Tu agente está listo!</h1>
-      <p>Se ha conectado con SYNDAbrain como <strong>{agentProfile.agent_id}</strong>.</p>
-      <pre>{JSON.stringify(agentProfile, null, 2)}</pre>
+    <div style={{ padding: "2rem", fontFamily: "sans-serif", textAlign: "center" }}>
+      <h1>🧠 Perfil Cognitivo</h1>
+      <p>Este es tu radar de pensamiento según los 6 sombreros de Edward de Bono.</p>
+
+      <div style={{ maxWidth: "600px", margin: "2rem auto" }}>
+        {perfil.map(({ sombrero, valor }) => {
+          const pct = ((valor / total) * 100).toFixed(1);
+          return (
+            <div key={sombrero} style={{ marginBottom: "1rem", textAlign: "left" }}>
+              <strong>{sombrero}</strong>: {pct}%
+              <div style={{
+                height: "12px",
+                width: pct + "%",
+                backgroundColor: colores[sombrero as keyof typeof colores],
+                borderRadius: "6px",
+                marginTop: "4px"
+              }} />
+            </div>
+          );
+        })}
+      </div>
+
+      <p style={{ marginTop: "3rem" }}>🔄 Puedes reiniciar el onboarding si deseas actualizar tu perfil.</p>
     </div>
   );
 }
