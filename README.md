@@ -1,19 +1,18 @@
-# Onboarding Agentes – SYNDAverse
+# SYNDAverse Complete Onboarding
 
-Este repositorio contiene el flujo de **onboarding para agentes neurodivergentes** que ingresan a SYNDAverse.  
-Incluye el **cuestionario de Edward de Bono (Seis Sombreros para Pensar)** para identificar el **superpoder cognitivo** de cada agente.
+Este paquete contiene el flujo completo de onboarding para agentes SYNDAverse, incluyendo:
 
-## 🔹 Objetivos
-- Definir datos requeridos para el registro de agentes.
-- Aplicar cuestionario de Edward de Bono para determinar el "sombrero" dominante.
-- Traducir el resultado en un **superpoder** y un **avatar inicial**.
-- Asignar XP inicial y reglas de progresión.
-- Conectar agentes con el módulo Synapsis para postular a desafíos.
-- Integrar sistema de mentorías y feedback positivo.
+✅ Filtro P‑Trust (validación de intención y coherencia)  
+✅ Test de los Seis Sombreros de Edward de Bono  
+✅ Generación de radar cognitivo y ficha PDF  
+✅ Conexión con SYNDAbrain (`https://tru-e-synda-brain.onrender.com`)  
+✅ Visualización de perfil del agente con opción de chat
 
-## 📂 Roadmap corto
-1. Documentar cuestionario de los Seis Sombreros para Pensar.
-2. Diseñar pantallas de registro, cuestionario y resultado (superpoder).
-3. Implementar sistema de avatares basados en superpoder.
-4. Configurar asignación de XP inicial y mentorías.
-5. Conectar con Synapsis Platform para participación en desafíos.
+## Estructura
+
+- `components/`: formularios, radar y chatbox  
+- `pages/onboarding/`: flujo de creación y conexión  
+- `lib/`: lógica de perfil, filtros y superpoderes  
+- `utils/`: generadores de gráficos y PDF  
+- `SyndaCreatorStudio/` y `SyndaVoiceAgent/`: módulos futuros  
+- `public/assets/`: íconos y plantilla visual
