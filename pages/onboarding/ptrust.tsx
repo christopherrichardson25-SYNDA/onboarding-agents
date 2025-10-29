@@ -21,7 +21,7 @@ export default function PTrustPage() {
       <p>Estamos evaluando tu nivel de confianza con el sistema P‑Trust.</p>
 
       <iframe
-        src="https://chat.openai.com/gpts/<ID_DEL_GPT_P-TRUST>"
+        src="https://chatgpt.com/g/g-68530b58236c81919d8b28a871b7d64d"
         width="100%"
         height="600"
         style={{ border: "1px solid #ccc", borderRadius: "8px" }}
