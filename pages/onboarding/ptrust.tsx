@@ -28,7 +28,9 @@ export default function PTrustPage() {
         allow="clipboard-write"
       />
 
-      <p style={{ marginTop: "1rem", color: "#888" }}>Tu perfil de confianza será generado y usado en tu avatar.</p>
+      <p style={{ marginTop: "1rem", color: "#888" }}>
+        Tu perfil de confianza será generado y usado en tu avatar.
+      </p>
     </div>
   );
 }
